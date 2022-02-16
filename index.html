@@ -25,22 +25,33 @@
 </head>
 
 <body>
+    <!-- header start -->
     <header>
         <h1 class="fw-bold text-center my-5 display-5">Cash Catcher &#128176;</h1>
     </header>
+    <!-- header end -->
+
+    <!-- main start -->
     <main>
         <section class="container">
             <div class="row pb-md-5 gx-md-5">
+                <!-- image section start -->
                 <div class="col-md-6">
                     <img class="img-fluid" src="images/calculate.jpg" alt="calculate">
                 </div>
+                <!-- image section end -->
+
+                <!-- calculation section start -->
                 <div class="col-md-6 calculation-section">
                     <div class="d-flex flex-column align-items-center">
+                        <!-- income -->
                         <h2 class="fs-4 pt-5 fw-medium">Income</h2>
                         <div class="row align-items-center py-4">
                             <h4 class="col-4 mb-0 d-inline fw-normal">Income : </h4>
                             <input id="" class="col-8 border-0 px-3 py-2">
                         </div>
+
+                        <!-- expenses -->
                         <h2 class="fs-4 py-1 fw-medium">Expenses</h2>
                         <div class="row align-items-center py-2">
                             <h4 class="col-4 mb-0 d-inline fw-normal">Food : </h4>
@@ -54,9 +65,16 @@
                             <h4 class="col-4 mb-0 d-inline fw-normal">Clothes : </h4>
                             <input id="" class="col-8 border-0 px-3 py-2">
                         </div>
-                        <button class="btn btn-primary my-3 px-4 py-2 fw-bold fs-5">Calculate</button>
+
+                        <!-- calculate button -->
+                        <button id="calculate-button"
+                            class="btn btn-primary my-3 px-4 py-2 fw-bold fs-5">Calculate</button>
+
+                        <!-- total -->
                         <h2 class="fs-4 fw-medium py-2">Total Expenses: 5500</h2>
                         <h2 class="fs-4 fw-medium py-2">Balance: 4500</h2>
+
+                        <!-- savings -->
                         <div class="d-flex flex-md-row flex-column align-items-center py-4">
                             <h4 class="mb-0 d-inline fw-normal me-3">Save :</h4>
                             <div class="mt-2">
@@ -69,10 +87,11 @@
                         <h2 class="fs-4 fw-medium py-md-2 pb-5">Remaining Balance: 2500</h2>
                     </div>
                 </div>
-
+                <!-- calculation section end -->
             </div>
         </section>
     </main>
+    <!-- main end -->
 
 
     <!-- bootstrap js -->
