@@ -1,0 +1,26 @@
+/* utilities */
+.fw-medium {
+    font-weight: 500;
+}
+
+/* header style */
+header{
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* calculation section style */
+.calculation-section{
+    font-family: 'Roboto', sans-serif;
+    background-color: #F8F8F8;
+}
+.calculation-section h4{
+    font-size: 18px;
+}
+.calculation-section input{
+    background-color: #DCDCDC;
+    border-radius: 2px;
+}
+.calculation-section button{
+    font-family: 'Roboto', sans-serif;
+
+}
