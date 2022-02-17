@@ -18,8 +18,11 @@ document.getElementById('calculate-button').addEventListener('click', function (
     if (isNaN(incomeAmount) || isNaN(foodExpense) || isNaN(rentExpense) || isNaN(clothesExpense)) {
         stringError.style.display = 'block';
         negativeError.style.display = 'none';
-        expensesAmount.innerText = '00';
-        balanceAmount.innerText = '00';
+        expenseError.style.display = 'none';
+
+        cleanOutputField(expensesAmount);
+        cleanOutputField(balanceAmount);
+
         if (isNaN(incomeAmount)) {
             stringError.innerText = 'Please, enter number in Income.'
         }
@@ -34,10 +37,12 @@ document.getElementById('calculate-button').addEventListener('click', function (
         }
     }
     else if (incomeAmount < 0 || foodExpense < 0 || rentExpense < 0 || clothesExpense < 0) {
-        stringError.style.display = 'none';
         negativeError.style.display = 'block';
-        expensesAmount.innerText = '00';
-        balanceAmount.innerText = '00';
+        stringError.style.display = 'none';
+        expenseError.style.display = 'none';
+
+        cleanOutputField(expensesAmount);
+        cleanOutputField(balanceAmount);
     }
 
     else {
@@ -47,6 +52,9 @@ document.getElementById('calculate-button').addEventListener('click', function (
         const totalExpenses = foodExpense + rentExpense + clothesExpense;
         if (incomeAmount < totalExpenses) {
             expenseError.style.display = 'block';
+
+            cleanOutputField(expensesAmount);
+            cleanOutputField(balanceAmount);
         }
         else {
             expenseError.style.display = 'none';
@@ -77,15 +85,24 @@ document.getElementById('save-button').addEventListener('click', function () {
         stringSaveError.style.display = 'block';
         negativeSaveError.style.display = 'none';
         saveError.style.display = 'none';
+
+        cleanOutputField(savingAmount);
+        cleanOutputField(remainingBalance);
     }
 
     else if (savingPercent < 0) {
         negativeSaveError.style.display = 'block';
         stringSaveError.style.display = 'none';
         saveError.style.display = 'none';
+
+        cleanOutputField(savingAmount);
+        cleanOutputField(remainingBalance);
     }
 
     else {
+        stringSaveError.style.display = 'none';
+        negativeSaveError.style.display = 'none';
+
         // calculate and update saving amount
         savingAmount.innerText = (incomeAmount * savingPercent) / 100;
 
@@ -95,15 +112,11 @@ document.getElementById('save-button').addEventListener('click', function () {
 
         if (savingAmountNumber > balanceFieldNumber) {
             saveError.style.display = 'block';
-            stringSaveError.style.display = 'none';
-            negativeSaveError.style.display = 'none';
 
-            savingAmount.innerText = '00';
-            remainingBalance.innerText = '00';
+            cleanOutputField(savingAmount);
+            cleanOutputField(remainingBalance);
         }
         else {
-            stringSaveError.style.display = 'none';
-            negativeSaveError.style.display = 'none';
             saveError.style.display = 'none';
 
             // calculate and update remaining balance
@@ -130,4 +143,9 @@ function getOutputText(fieldName) {
 function getErrorElement(elementName) {
     const errorElement = document.getElementById(elementName + '-error')
     return errorElement;
+}
+
+// clean output field function
+function cleanOutputField(fieldName) {
+    fieldName.innerText = '00';
 }
