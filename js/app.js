@@ -1,5 +1,11 @@
 // handle calculate button event
 document.getElementById('calculate-button').addEventListener('click', function () {
+    // get input values in string from input box
+    const incomeAmountText = getInputText('income');
+    const foodExpenseText = getInputText('food');
+    const rentExpenseText = getInputText('rent');
+    const clothesExpenseText = getInputText('clothes');
+
     // get input values in number from input box
     const incomeAmount = getInputNumber('income');
     const foodExpense = getInputNumber('food');
@@ -15,24 +21,24 @@ document.getElementById('calculate-button').addEventListener('click', function (
     const negativeError = getErrorElement('negative');
     const expenseError = getErrorElement('expense')
 
-    if (isNaN(incomeAmount) || isNaN(foodExpense) || isNaN(rentExpense) || isNaN(clothesExpense)) {
+    if (isNaN(incomeAmountText) || isNaN(foodExpenseText) || isNaN(rentExpenseText) || isNaN(clothesExpenseText)) {
         stringError.style.display = 'block';
-        negativeError.style.display = 'none';
+        negativeError.style.display = 'none'; Text
         expenseError.style.display = 'none';
 
         cleanOutputField(expensesAmount);
         cleanOutputField(balanceAmount);
 
-        if (isNaN(incomeAmount)) {
+        if (isNaN(incomeAmountText)) {
             stringError.innerText = 'Please, enter number in Income.'
         }
-        else if (isNaN(foodExpense)) {
+        else if (isNaN(foodExpenseText)) {
             stringError.innerText = 'Please, enter number in Food Expense.'
         }
-        else if (isNaN(rentExpense)) {
+        else if (isNaN(rentExpenseText)) {
             stringError.innerText = 'Please, enter number in Rent Expense.'
         }
-        else if (isNaN(clothesExpense)) {
+        else if (isNaN(clothesExpenseText)) {
             stringError.innerText = 'Please, enter number in Clothes Expense.'
         }
     }
@@ -124,6 +130,13 @@ document.getElementById('save-button').addEventListener('click', function () {
         }
     }
 })
+
+// get input in text function
+function getInputText(fieldName) {
+    const inputField = document.getElementById(fieldName + '-input');
+    const inputText = inputField.value;
+    return inputText;
+}
 
 // get input in number function
 function getInputNumber(fieldName) {
