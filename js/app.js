@@ -10,10 +10,13 @@ document.getElementById('calculate-button').addEventListener('click', function (
     const expensesAmount = getOutputText('expenses');
     const balanceRemaining = getOutputText('balance');
 
+    // get error messages
+    const stringError = getErrorElement('string');
+    const negativeError = getErrorElement('negative');
 
     if (isNaN(incomeAmount) || isNaN(foodExpenses) || isNaN(rentExpenses) || isNaN(clothesExpenses)) {
-        const stringError = document.getElementById('string-error');
         stringError.style.display = 'block';
+        negativeError.style.display = 'none';
         expensesAmount.innerText = '00';
         balanceRemaining.innerText = '00';
         if (isNaN(incomeAmount)) {
@@ -29,19 +32,22 @@ document.getElementById('calculate-button').addEventListener('click', function (
             stringError.innerText = 'Please, enter number in Clothes Expenses.'
         }
     }
+    else if (incomeAmount < 0 || foodExpenses < 0 || rentExpenses < 0 || clothesExpenses < 0) {
+        stringError.style.display = 'none';
+        negativeError.style.display = 'block';
+        expensesAmount.innerText = '00';
+        balanceRemaining.innerText = '00';
+    }
+
     else {
-        document.getElementById('string-error').style.display = 'none';
-        if (incomeAmount < 0 || foodExpenses < 0 || rentExpenses < 0 || clothesExpenses < 0) {
-            document.getElementById('negative-error').style.display = 'block';
-        }
-        else {
-            document.getElementById('negative-error').style.display = 'none';
-            // calculate and update total expenses
-            const totalExpenses = foodExpenses + rentExpenses + clothesExpenses;
-            expensesAmount.innerText = totalExpenses;
-            // calculate and update balance
-            balanceRemaining.innerText = incomeAmount - totalExpenses;
-        }
+        stringError.style.display = 'none';
+        negativeError.style.display = 'none';
+        // calculate and update total expenses
+        const totalExpenses = foodExpenses + rentExpenses + clothesExpenses;
+        expensesAmount.innerText = totalExpenses;
+        // calculate and update balance
+        balanceRemaining.innerText = incomeAmount - totalExpenses;
+
     }
 
 
@@ -63,6 +69,18 @@ document.getElementById('save-button').addEventListener('click', function () {
 
     // calculate and update remaining balance
     remainingBalance.innerText = parseFloat(balanceField.innerText) - savingAmount.innerText;
+
+    // get error messages
+    const saveError = getErrorElement('save')
+
+    if (savingAmount.innerText > balanceField.innerText) {
+        saveError.style.display = 'block';
+        savingAmount.innerText = '00'
+        remainingBalance.innerText = '00'
+    }
+    else {
+        saveError.style.display = 'none';
+    }
 })
 
 // get input in number function
@@ -77,4 +95,10 @@ function getInputNumber(fieldName) {
 function getOutputText(fieldName) {
     const outputField = document.getElementById(fieldName + '-output');
     return outputField;
+}
+
+// get error element function
+function getErrorElement(elementName) {
+    const errorElement = document.getElementById(elementName + '-error')
+    return errorElement;
 }

@@ -44,12 +44,6 @@
                 <!-- calculation section start -->
                 <div class="col-md-6 calculation-section">
                     <div class="d-flex flex-column align-items-center">
-                        <!-- error massages -->
-                        <small id="string-error" class="mb-0 mt-2 bg-danger rounded-pill text-light px-3 py-1">
-                        </small>
-                        <small id="negative-error" class="mb-0 mt-2 bg-danger rounded-pill text-light px-3 py-1">Please,
-                            give positive number.</small>
-
                         <!-- income -->
                         <h2 class="fs-4 pt-5 fw-medium">Income</h2>
                         <div class="row align-items-center py-4">
@@ -72,13 +66,24 @@
                             <input id="clothes-input" class="col-8 border-0 px-3 py-2">
                         </div>
 
+                        <!-- error messages -->
+                        <small id="string-error" class="mb-0 bg-danger rounded-pill text-light px-3 py-1">
+                        </small>
+                        <small id="negative-error" class="mb-0 bg-danger rounded-pill text-light px-3 py-1">Please,
+                            give positive number.</small>
+
                         <!-- calculate button -->
                         <button id="calculate-button"
-                            class="btn btn-primary my-3 px-4 py-2 fw-bold fs-5">Calculate</button>
+                            class="btn btn-primary my-2 px-4 py-2 fw-bold fs-5">Calculate</button>
 
                         <!-- total -->
                         <h2 class="fs-4 fw-medium py-2">Total Expenses: <span id="expenses-output">00</span></h2>
                         <h2 class="fs-4 fw-medium py-2">Balance: <span id="balance-output">00</span></h2>
+
+                        <!-- error messages -->
+                        <!-- error messages -->
+                        <small id="save-error" class="mb-0 mt-2 bg-danger rounded-pill text-light px-3 py-1">You
+                            have not enough balance to save.</small>
 
                         <!-- savings -->
                         <div class="d-flex flex-md-row flex-column align-items-center py-4">
