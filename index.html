@@ -44,6 +44,12 @@
                 <!-- calculation section start -->
                 <div class="col-md-6 calculation-section">
                     <div class="d-flex flex-column align-items-center">
+                        <!-- error massages -->
+                        <small id="string-error" class="mb-0 mt-2 bg-danger rounded-pill text-light px-3 py-1">
+                        </small>
+                        <small id="negative-error" class="mb-0 mt-2 bg-danger rounded-pill text-light px-3 py-1">Please,
+                            give positive number.</small>
+
                         <!-- income -->
                         <h2 class="fs-4 pt-5 fw-medium">Income</h2>
                         <div class="row align-items-center py-4">
@@ -77,14 +83,16 @@
                         <!-- savings -->
                         <div class="d-flex flex-md-row flex-column align-items-center py-4">
                             <h4 class="mb-0 d-inline fw-normal me-3">Save :</h4>
-                            <div class="mt-2">
-                                <input id="" class="border-0 px-3 py-2 me-3">
+                            <div class="mt-md-0 mt-2">
+                                <input id="save-input" class="border-0 px-3 py-2 me-3">
                                 <h4 class="mb-0 d-inline fw-normal me-3">%</h4>
                             </div>
-                            <button class="btn btn-primary px-4 py-2 border-0 fw-bold fs-5 mt-2">Save</button>
+                            <button id="save-button"
+                                class="btn btn-primary px-4 py-2 border-0 fw-bold fs-5 mt-md-0 mt-2">Save</button>
                         </div>
-                        <h2 class="fs-4 fw-medium py-2">Saving Amount: 2000</h2>
-                        <h2 class="fs-4 fw-medium py-md-2 pb-5">Remaining Balance: 2500</h2>
+                        <h2 class="fs-4 fw-medium py-2">Saving Amount: <span id="save-output">00</span></h2>
+                        <h2 class="fs-4 fw-medium py-md-2 pb-5">Remaining Balance: <span id="remaining-output">00</span>
+                        </h2>
                     </div>
                 </div>
                 <!-- calculation section end -->
