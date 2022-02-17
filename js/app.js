@@ -8,7 +8,7 @@ document.getElementById('calculate-button').addEventListener('click', function (
 
     // get output texts
     const expensesAmount = getOutputText('expenses');
-    const balanceRemaining = getOutputText('balance');
+    const balanceAmount = getOutputText('balance');
 
     // get error messages
     const stringError = getErrorElement('string');
@@ -19,7 +19,7 @@ document.getElementById('calculate-button').addEventListener('click', function (
         stringError.style.display = 'block';
         negativeError.style.display = 'none';
         expensesAmount.innerText = '00';
-        balanceRemaining.innerText = '00';
+        balanceAmount.innerText = '00';
         if (isNaN(incomeAmount)) {
             stringError.innerText = 'Please, enter number in Income.'
         }
@@ -37,7 +37,7 @@ document.getElementById('calculate-button').addEventListener('click', function (
         stringError.style.display = 'none';
         negativeError.style.display = 'block';
         expensesAmount.innerText = '00';
-        balanceRemaining.innerText = '00';
+        balanceAmount.innerText = '00';
     }
 
     else {
@@ -52,15 +52,9 @@ document.getElementById('calculate-button').addEventListener('click', function (
             expenseError.style.display = 'none';
             expensesAmount.innerText = totalExpenses;
             // calculate and update balance
-            balanceRemaining.innerText = incomeAmount - totalExpenses;
+            balanceAmount.innerText = incomeAmount - totalExpenses;
         }
-
-
-
-
     }
-
-
 })
 
 // handle save button event
@@ -74,22 +68,47 @@ document.getElementById('save-button').addEventListener('click', function () {
     const remainingBalance = getOutputText('remaining');
     const balanceField = getOutputText('balance');
 
-    // calculate and update saving amount
-    savingAmount.innerText = (incomeAmount * savingPercent) / 100;
-
-    // calculate and update remaining balance
-    remainingBalance.innerText = parseFloat(balanceField.innerText) - savingAmount.innerText;
-
     // get error messages
-    const saveError = getErrorElement('save')
+    const stringSaveError = getErrorElement('string-save');
+    const negativeSaveError = getErrorElement('negative-save');
+    const saveError = getErrorElement('save');
 
-    if (savingAmount.innerText > balanceField.innerText) {
-        saveError.style.display = 'block';
-        savingAmount.innerText = '00'
-        remainingBalance.innerText = '00'
-    }
-    else {
+    if (isNaN(savingPercent)) {
+        stringSaveError.style.display = 'block';
+        negativeSaveError.style.display = 'none';
         saveError.style.display = 'none';
+    }
+
+    else if (savingPercent < 0) {
+        negativeSaveError.style.display = 'block';
+        stringSaveError.style.display = 'none';
+        saveError.style.display = 'none';
+    }
+
+    else {
+        // calculate and update saving amount
+        savingAmount.innerText = (incomeAmount * savingPercent) / 100;
+
+        // get output field in number
+        const savingAmountNumber = parseFloat(savingAmount.innerText);
+        const balanceFieldNumber = parseFloat(balanceField.innerText);
+
+        if (savingAmountNumber > balanceFieldNumber) {
+            saveError.style.display = 'block';
+            stringSaveError.style.display = 'none';
+            negativeSaveError.style.display = 'none';
+
+            savingAmount.innerText = '00';
+            remainingBalance.innerText = '00';
+        }
+        else {
+            stringSaveError.style.display = 'none';
+            negativeSaveError.style.display = 'none';
+            saveError.style.display = 'none';
+
+            // calculate and update remaining balance
+            remainingBalance.innerText = balanceFieldNumber - savingAmountNumber;
+        }
     }
 })
 
