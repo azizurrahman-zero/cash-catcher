@@ -2,9 +2,9 @@
 document.getElementById('calculate-button').addEventListener('click', function () {
     // get input values in number from input box
     const incomeAmount = getInputNumber('income');
-    const foodExpenses = getInputNumber('food');
-    const rentExpenses = getInputNumber('rent');
-    const clothesExpenses = getInputNumber('clothes');
+    const foodExpense = getInputNumber('food');
+    const rentExpense = getInputNumber('rent');
+    const clothesExpense = getInputNumber('clothes');
 
     // get output texts
     const expensesAmount = getOutputText('expenses');
@@ -13,8 +13,9 @@ document.getElementById('calculate-button').addEventListener('click', function (
     // get error messages
     const stringError = getErrorElement('string');
     const negativeError = getErrorElement('negative');
+    const expenseError = getErrorElement('expense')
 
-    if (isNaN(incomeAmount) || isNaN(foodExpenses) || isNaN(rentExpenses) || isNaN(clothesExpenses)) {
+    if (isNaN(incomeAmount) || isNaN(foodExpense) || isNaN(rentExpense) || isNaN(clothesExpense)) {
         stringError.style.display = 'block';
         negativeError.style.display = 'none';
         expensesAmount.innerText = '00';
@@ -22,17 +23,17 @@ document.getElementById('calculate-button').addEventListener('click', function (
         if (isNaN(incomeAmount)) {
             stringError.innerText = 'Please, enter number in Income.'
         }
-        else if (isNaN(foodExpenses)) {
-            stringError.innerText = 'Please, enter number in Food Expenses.'
+        else if (isNaN(foodExpense)) {
+            stringError.innerText = 'Please, enter number in Food Expense.'
         }
-        else if (isNaN(rentExpenses)) {
-            stringError.innerText = 'Please, enter number in Rent Expenses.'
+        else if (isNaN(rentExpense)) {
+            stringError.innerText = 'Please, enter number in Rent Expense.'
         }
-        else if (isNaN(clothesExpenses)) {
-            stringError.innerText = 'Please, enter number in Clothes Expenses.'
+        else if (isNaN(clothesExpense)) {
+            stringError.innerText = 'Please, enter number in Clothes Expense.'
         }
     }
-    else if (incomeAmount < 0 || foodExpenses < 0 || rentExpenses < 0 || clothesExpenses < 0) {
+    else if (incomeAmount < 0 || foodExpense < 0 || rentExpense < 0 || clothesExpense < 0) {
         stringError.style.display = 'none';
         negativeError.style.display = 'block';
         expensesAmount.innerText = '00';
@@ -43,10 +44,19 @@ document.getElementById('calculate-button').addEventListener('click', function (
         stringError.style.display = 'none';
         negativeError.style.display = 'none';
         // calculate and update total expenses
-        const totalExpenses = foodExpenses + rentExpenses + clothesExpenses;
-        expensesAmount.innerText = totalExpenses;
-        // calculate and update balance
-        balanceRemaining.innerText = incomeAmount - totalExpenses;
+        const totalExpenses = foodExpense + rentExpense + clothesExpense;
+        if (incomeAmount < totalExpenses) {
+            expenseError.style.display = 'block';
+        }
+        else {
+            expenseError.style.display = 'none';
+            expensesAmount.innerText = totalExpenses;
+            // calculate and update balance
+            balanceRemaining.innerText = incomeAmount - totalExpenses;
+        }
+
+
+
 
     }
 
